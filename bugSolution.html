@@ -1,0 +1,11 @@
+The issue was resolved by using a JavaScript solution to directly manipulate the parent element's class attributes after the component mounts.  This bypasses the issues associated with the `@apply` directive's cascading behavior.  Consider using this approach only after investigating the CSS specificity and ensuring that the styles are not conflicting. A more robust long term solution might be to refactor the styles to not require this technique.
+
+```javascript
+// JavaScript solution (example using vanilla JS):
+const parent = document.getElementById('parent');
+const child = document.getElementById('child');
+
+child.addEventListener('load', function() {
+  parent.classList.add('bg-blue-500'); //add styles using javascript after the component has been loaded 
+});
+```
